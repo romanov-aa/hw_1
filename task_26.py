@@ -17,18 +17,37 @@ def plus():
     move_up(2)
 
 
-@task(delay=0.02)
+@task(delay=0.001)
 def task_2_4():
-    i = 1
-    flag = True
-    flag2 = True
-    while True:
-        move_right()
-        while True:
+    i = 3
 
+    for i in range(2):
+        move_right()
+        for i in range(10):
             plus()
-            i += 1
-            i % 2 == 0
+            move_right(1)
+            if not wall_is_on_the_right():
+                move_right(3)
+            else:
+                move_down(4)
+                move_left(1)
+                for i in range(10):
+                    plus()
+                    move_left(1)
+                    if not wall_is_on_the_left():
+                        move_left(3)
+                    else:
+                        move_down(4)
+    move_right()
+    for i in range(10):
+        plus()
+        move_right(1)
+        if not wall_is_on_the_right():
+            move_right(3)
+    while not wall_is_on_the_left():
+        move_left()
+
+
 
 
 
